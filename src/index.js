@@ -1,9 +1,4 @@
 // koa开发目录结构分配及相关中间件的使用
-// const Koa = require('koa')
-// const helmet = require('koa-helmet')
-// const statics = require('koa-static')
-// const path = require('path')
-
 
 import Koa from 'koa'
 import statics from 'koa-static'
@@ -16,12 +11,7 @@ import compose from 'koa-compose';
 import routers from './routes/routes'
 
 const app = new Koa()
-// const routers = require('./routes/routes')
-// console.log(routers)
-// app.use ... 可以使用koa-compose(整合koa中间件）
-// app.use(helmet())
-// app.use(statics(path.join(__dirname, '../public')))
-// app.use(routers())
+
 const middleware = compose([
   koaBody(),
   statics(path.join(__dirname, '../public')),
@@ -29,6 +19,14 @@ const middleware = compose([
   jsonutil({pretty: false, param: 'pretty'}),
   helmet()
 ])
+
+console.log(process.env.NODE_ENV)
+
+const isDevMode = (process.env.NODE_ENV === 'production') ? false : true
+
+if(!isDevMode){
+  app.use()
+}
 
 app.use(middleware)
 app.use(routers())
