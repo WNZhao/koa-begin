@@ -2,9 +2,9 @@
 *  路由汇总
 * */
 
-import demoRoutes from './routerDemo'
+import publicRouter from './publicRouter'
 import combineRouters from 'koa-combine-routers'
 
 module.exports = combineRouters(
-  demoRoutes
+  publicRouter
 )

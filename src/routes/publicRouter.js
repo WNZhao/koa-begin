@@ -1,9 +1,9 @@
 import koaRouter from 'koa-router'
-import demoController from '../api/demoController'
+import demoController from '../api/PublicController'
 
 const router = new koaRouter()
 
 router.prefix('/api')
-router.get('/demo', demoController.demo)
+router.get('/captcha', demoController.getCaptcha)
 
 export default router
